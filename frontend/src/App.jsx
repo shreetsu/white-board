@@ -1,12 +1,13 @@
-
+import Forms from './components/Forms/index.jsx';
+import "./App.css";
 
 const App = () => {
 
   return (
-    <>
-      <h1> Hello World </h1>
-    </>
-  )
-}
+    <div className="container">
+      <Forms/>
+    </div>
+  );
+};
 
-export default App
+export default App;
