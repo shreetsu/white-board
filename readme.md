@@ -1,3 +1,5 @@
 White Board Sharing Project 
 <br>
-By - Supreet Singh, Idhant Singh And Harsh Pandiyar
+By - Harsh Pandiyar, Supari Singh, Idhant Singh
+
+PS: Lauda lele huehuehue
