@@ -24,7 +24,12 @@ const Whiteboard = ({ canvasRef, ctxRef, elements, setElements,tool,color }) => 
   useLayoutEffect(() => {
     const roughCanvas = rough.canvas(canvasRef.current);
     if(elements.length>0){
-      ctxRef.current.clearRect(0,0,canvasRef.current.width,canvasRef.current.height);
+      ctxRef.current.clearRect(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
     }
     elements.forEach((element) => {
       if(element.type==="rect"){
