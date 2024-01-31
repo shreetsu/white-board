@@ -1,4 +1,8 @@
-const CreateRoomForm=()=>{
+import { useState } from "react";
+
+const CreateRoomForm=({uuid})=>{
+    const [roomId, setRoomId] = useState(uuid());
+    const [name, setName] = useState("");
     return (
         <form className="form col-md-12 mt-5">
             <div className="form-control">
@@ -10,13 +14,16 @@ const CreateRoomForm=()=>{
                 <div className="input-group d-flex align-items-center justify-content-center">
                     <input
                         type="text"
+                        value={roomId}
                         className="form-control my-2 border-0"
                         placeholder="Generate Room Code" 
                         disabled
                     />
                 </div>
                 <div className="input-group-append"> 
-                    <button className="btn btn-primary bt-sm me-1" type="button">
+                    <button className="btn btn-primary bt-sm me-1" 
+                    onClick = {() => (setRoomId(uuid()))} 
+                    type="button">
                         Generate
                     </button>
                     <button className="btn btn-outline-danger btn-sm me-2" type="button">Copy</button>

@@ -141,19 +141,20 @@ const Whiteboard = ({ canvasRef, ctxRef, elements, setElements,tool,color }) => 
       );
     }
     else if(tool==="line"){
-      setElements((prevElements) =>
-        prevElements.map((ele,index)=>{
+      setElements((prev) =>
+        prev.map((ele,index)=>{
           if(index===elements.length-1){
             return{
                 ...ele,
                 width:offsetX,
-                hegit:offsetY,
+                height:offsetY,
             };
-          }else{
-          return ele;
-        }
-      })
-     );
+          }
+          else{
+            return ele;
+          };
+        })
+      );
     }
     else if(tool==="rect"){
       setElements((prevElements) =>
