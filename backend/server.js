@@ -13,7 +13,11 @@ app.get("/", (req, res) =>{
     res.send("This is mern white board sharing app server by our team");
 });
 io.on("connection", (socket) => {
-    console.log("user connected");
+    socket.on("userJoined", (data) => {
+        const {name, userId, roomId, host, presenter} = data;
+        socket.join(roomId);
+        socket.emit("userIsJoined", {success : true})
+    })
 });
 
 server.listen(port, () => console.log("server is running on http://localhost:5001"));
