@@ -20,4 +20,8 @@ io.on("connection", (socket) => {
     })
 });
 
-server.listen(port, () => console.log("server is running on http://localhost:5001"));
+const host="localhost"
+
+server.listen(port,host,()=>{
+    console.log("server is listening")
+})
