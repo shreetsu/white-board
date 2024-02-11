@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import "./index.css";
 import Whiteboard from "../../components/Whiteboard";
 
-const RoomPage = ({ user }) => {
+const RoomPage = ({ user, socket }) => {
     
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
@@ -113,6 +113,8 @@ const RoomPage = ({ user }) => {
                 setElements = {setElements}
                 color={color}
                 tool={tool}
+                user = {user}
+                socket = {socket}
             />
         </div>
 
