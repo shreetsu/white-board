@@ -17,21 +17,28 @@ const connectionOptions = {
 const socket = io(server, connectionOptions);
 
 const App = () => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState([null]);
+  const [users,setUsers] =useState([]);
 
   useEffect(() => {
     socket.on("userJoined", (data) => {
       if (data.success) {
         console.log("userJoined");
         console.log(data);
-        setUser([{
-          host: true,
-          name: "uyyy",
-        }]);
+        setUsers(data.users);
+        // setUser([{
+        //   host: true,
+        //   name: "uyyy",
+        // }]);
       } else {
         console.log("userJoined error");
       }
     });
+
+    socket.on("allUsers",(data)=>{
+      setUsers(data);
+    });
+
   }, []); // Add user as a dependency
   
 
@@ -61,7 +68,7 @@ const App = () => {
     <div className="container">
       <Routes>
         <Route path="/" element={<Forms uuid = {uuid} socket = {socket} setUser={setUser}/>} />
-        <Route path="/:roomId" element={<RoomPage user = {user} socket = {socket} />} />
+        <Route path="/:roomId" element={<RoomPage user = {user} socket = {socket} users={users}/>} />
       </Routes>
       
       
