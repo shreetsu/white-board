@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef,useEffect } from "react";
 import "./index.css";
 import Whiteboard from "../../components/Whiteboard";
 
@@ -12,7 +12,7 @@ const RoomPage = ({ user, socket ,users}) => {
     const [elements, setElements] = useState([]);
     const [history, setHistory]=useState([]);
     const [openedUserTab,setopenedUserTab]=useState(false);
-
+ 
     const handleClearCanvas=()=>{
         const canvas=canvasRef.current;
         const ctx=canvas.getContext("2d");
