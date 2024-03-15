@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
         roomIdGlobal = roomId;
         socket.join(roomId);
         const users=addUser({name,userId,roomId,host, presenter, socketId:socket.id });
-        console.log(data);
+        // console.log(data);
         socket.emit("userIsJoined", {success : true,users});
         socket.broadcast.to(roomId).emit("userJoinedMessageBroadcasted",name);
         // socket.emit("allUsers",users);
@@ -38,15 +38,25 @@ io.on("connection", (socket) => {
             imgURL : data,
         });
     });
+    console.log("socketttt",socket.id);
+    socket.on("message", (data) => {
+        const { message } = data;
+        const user = getUser(socket.id);
+        if (user) {
+          socket.broadcast
+            .to(roomIdGlobal)
+            .emit("messageResponse", { message, name: user.name });
+        }
+      });
     socket.on("disconnect",()=>{
         const user = getUser(socket.id);
-       
+        console.log("disss",user);
         if(user){
-            const users = removeUser(socket.id);
+            removeUser(socket.id);
+            socket.broadcast.to(roomIdGlobal).emit("userLeftMessageBroadcasted", user.name);
         }
-        socket.broadcast.to(roomIdGlobal).emit("userLeftMessageBroadcasted", user);
-
         
+        // console.log(user);
     });
 });
 
